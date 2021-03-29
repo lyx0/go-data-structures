@@ -29,6 +29,15 @@ func (l linkedList) printListData() {
 	fmt.Printf("\n")
 }
 
+func (l *linkedList) deleteWithValue(value int) {
+	previousToDelete := l.head
+	for previousToDelete.next.data != value {
+		previousToDelete = previousToDelete.next
+	}
+	previousToDelete.next = previousToDelete.next.next
+	l.length--
+}
+
 func main() {
 	myList := linkedList{}
 	node1 := &node{data: 48}
@@ -44,5 +53,7 @@ func main() {
 	myList.prepend(node5)
 	myList.prepend(node6)
 	// fmt.Println(myList)
+	myList.printListData()
+	myList.deleteWithValue(123)
 	myList.printListData()
 }
